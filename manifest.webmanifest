@@ -1,0 +1,16 @@
+{
+  "name": "脆皮捏捏 直播计算器",
+  "short_name": "脆皮捏捏",
+  "description": "抖音直播间结账计算器",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fff7f4",
+  "theme_color": "#ff6b8b",
+  "lang": "zh-CN",
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#ff6b8b">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="脆皮捏捏">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icons/icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="stylesheet" href="styles.css">
+  <title>脆皮捏捏 · 直播计算器</title>
+</head>
+<body>
+  <div class="app">
+    <header class="topbar">
+      <img class="logo" src="icons/logo.png" alt="Lychee">
+      <nav class="tabs" role="tablist">
+        <button class="tab active" data-tab="checkout" role="tab">结账</button>
+        <button class="tab" data-tab="setup" role="tab">设置</button>
+      </nav>
+    </header>
+
+    <!-- 结账页 -->
+    <main id="page-checkout" class="page active">
+      <section class="total-card">
+        <div class="total-label">应付金额</div>
+        <div class="total-amount"><span class="yen">¥</span><span id="total">0</span></div>
+        <div class="chips" id="chips"></div>
+        <div class="total-detail" id="detail">未选择商品</div>
+      </section>
+
+      <section class="grid-wrap">
+        <div id="grid" class="grid"></div>
+        <div id="grid-empty" class="empty" hidden>
+          还没有商品<br>先去「设置」添加序号和价格
+        </div>
+      </section>
+
+      <section class="rules">
+        <button class="rule" data-rule="mai"><span class="rule-name">拍了麦序</span><span class="rule-val">-20</span></button>
+        <button class="rule" data-rule="deng"><span class="rule-name">灯牌</span><span class="rule-val">-1</span></button>
+        <button class="rule" data-rule="full"><span class="rule-name">每满100</span><span class="rule-val">-5</span></button>
+      </section>
+
+      <section class="actions">
+        <button id="btn-cancel" class="btn-clear">清空</button>
+        <button id="btn-done" class="btn-done">完成，下一单</button>
+      </section>
+    </main>
+
+    <!-- 设置页 -->
+    <main id="page-setup" class="page">
+      <div class="scroll">
+        <section class="card">
+          <h2>添加 / 修改商品</h2>
+          <div class="form-row">
+            <label>序号
+              <input id="in-from" type="number" inputmode="numeric" min="1" placeholder="起">
+            </label>
+            <span class="to">至</span>
+            <label>
+              <span class="sr">结束序号</span>
+              <input id="in-to" type="number" inputmode="numeric" min="1" placeholder="止（可空）">
+            </label>
+          </div>
+          <div class="form-row two">
+            <label>价格 ¥
+              <input id="in-price" type="number" inputmode="numeric" min="0" step="1" placeholder="0">
+            </label>
+            <label>库存（空=不限）
+              <input id="in-stock" type="number" inputmode="numeric" min="0" placeholder="不限">
+            </label>
+          </div>
+          <button id="btn-add" class="btn-primary">添加</button>
+          <p class="hint">序号区间用同一价格、库存批量添加；已存在的序号会更新价格，填了库存才会更新库存。</p>
+        </section>
+
+        <section class="card">
+          <div class="card-head">
+            <h2>今晚商品 <small id="count"></small></h2>
+            <button id="btn-reset-sold" class="btn-link">已售清零</button>
+            <button id="btn-reset" class="btn-link danger">新场次（清空）</button>
+          </div>
+          <div class="list-head"><span>序号</span><span>价格</span><span>库存</span><span></span></div>
+          <div id="list" class="list"></div>
+          <div id="list-empty" class="empty small" hidden>暂无商品</div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
